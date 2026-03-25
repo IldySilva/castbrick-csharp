@@ -1,0 +1,26 @@
+name: Publish to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Build & Pack
+        run: dotnet pack CastBrick.SDK/CastBrick.SDK.csproj -c Release
+
+      - name: Push to NuGet
+        run: |
+          dotnet nuget push CastBrick.SDK/bin/Release/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json
