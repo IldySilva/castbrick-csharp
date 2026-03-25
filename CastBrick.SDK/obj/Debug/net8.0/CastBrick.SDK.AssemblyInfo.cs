@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Official .NET SDK for the CastBrick API — SMS, Contacts and Broadcasts.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.0+a807a58d81d36fd81889e9c745d48caf43aa21e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("CastBrick.SDK")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CastBrick.SDK")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.0.0")]

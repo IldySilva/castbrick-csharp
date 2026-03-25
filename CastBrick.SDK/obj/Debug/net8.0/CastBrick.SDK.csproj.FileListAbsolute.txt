@@ -1,12 +1,13 @@
-/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.csproj.AssemblyReference.cache
-/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.GeneratedMSBuildEditorConfig.editorconfig
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/bin/Debug/net8.0/CastBrick.SDK.deps.json
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/bin/Debug/net8.0/CastBrick.SDK.dll
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/bin/Debug/net8.0/CastBrick.SDK.pdb
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/bin/Debug/net8.0/CastBrick.SDK.xml
+/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.csproj.AssemblyReference.cache
+/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.GeneratedMSBuildEditorConfig.editorconfig
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.AssemblyInfoInputs.cache
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.AssemblyInfo.cs
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.csproj.CoreCompileInputs.cache
+/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.sourcelink.json
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.dll
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/refint/CastBrick.SDK.dll
 /Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/obj/Debug/net8.0/CastBrick.SDK.xml
