@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CastBrick.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:CastBrick.SDK.CastBrickApiException">
+            <summary>Thrown when the CastBrick API returns a non-success HTTP status.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.CastBrickApiException.StatusCode">
+            <summary>HTTP status code returned by the API.</summary>
+        </member>
+        <member name="T:CastBrick.SDK.CastBrickClient">
+             <summary>
+             Official CastBrick .NET SDK client.
+             <para>
+             <example>
+             <code>
+             var cb = new CastBrickClient(new CastBrickOptions { ApiKey = "your_api_key" });
+            
+             // Send an SMS
+             await cb.Sms.SendAsync(new SendSmsRequest
+             {
+                 Recipients = ["+244923000000"],
+                 Content = "Hello from CastBrick!"
+             });
+            
+             // List contacts
+             var contacts = await cb.Contacts.ListAsync();
+            
+             // Create and send a broadcast
+             var id = await cb.Broadcasts.CreateAsync(new CreateBroadcastRequest
+             {
+                 Name = "Promo",
+                 Message = "50% off today!"
+             });
+             await cb.Broadcasts.SendAsync(id);
+             </code>
+             </example>
+             </para>
+             </summary>
+        </member>
+        <member name="P:CastBrick.SDK.CastBrickClient.Sms">
+            <summary>SMS operations.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.CastBrickClient.Contacts">
+            <summary>Contacts and contact lists operations.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.CastBrickClient.Broadcasts">
+            <summary>Broadcast operations.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.CastBrickClient.#ctor(System.Net.Http.HttpClient,CastBrick.SDK.CastBrickOptions)">
+            <summary>
+            Initialise the CastBrick client with an <see cref="T:System.Net.Http.HttpClient"/> and options.
+            Use this overload when integrating with <c>IHttpClientFactory</c>.
+            </summary>
+        </member>
+        <member name="M:CastBrick.SDK.CastBrickClient.#ctor(CastBrick.SDK.CastBrickOptions)">
+            <summary>
+            Initialise the CastBrick client with a new <see cref="T:System.Net.Http.HttpClient"/> (standalone usage).
+            </summary>
+        </member>
+        <member name="T:CastBrick.SDK.CastBrickOptions">
+            <summary>Configuration options for the CastBrick SDK client.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.CastBrickOptions.ApiKey">
+            <summary>Your CastBrick API key.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.CastBrickOptions.BaseUrl">
+            <summary>API base URL. Defaults to https://api.castbrick.com.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Contacts.CreateContactRequest.Emails">
+            <summary>Comma or newline-separated email addresses.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Contacts.CreateContactRequest.PhoneNumbers">
+            <summary>Comma or newline-separated phone numbers.</summary>
+        </member>
+        <member name="T:CastBrick.SDK.Models.PagedResult`1">
+            <summary>A paginated list of items.</summary>
+        </member>
+        <member name="T:CastBrick.SDK.Models.Sms.SendSmsRequest">
+            <summary>Request to send one or more SMS messages.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Sms.SendSmsRequest.Recipients">
+            <summary>List of E.164 phone numbers, e.g. "+244923000000".</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Sms.SendSmsRequest.Content">
+            <summary>Message content (max 1600 characters).</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Sms.SendSmsRequest.SenderId">
+            <summary>Optional SMS sender ID.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Sms.SendSmsRequest.ScheduledAt">
+            <summary>Schedule the message for future delivery (UTC).</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Sms.SendSmsRequest.ContactListId">
+            <summary>Send to all contacts in this list instead of/in addition to Recipients.</summary>
+        </member>
+        <member name="T:CastBrick.SDK.Resources.BroadcastsResource">
+            <summary>Broadcast operations.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.ListAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>List broadcasts (paginated).</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.GetAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get a broadcast by ID.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.CreateAsync(CastBrick.SDK.Models.Broadcasts.CreateBroadcastRequest,System.Threading.CancellationToken)">
+            <summary>Create a new broadcast. Returns the new broadcast ID.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.UpdateAsync(System.Guid,CastBrick.SDK.Models.Broadcasts.UpdateBroadcastRequest,System.Threading.CancellationToken)">
+            <summary>Update an existing broadcast.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.SendAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Send (or schedule) a broadcast.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.CancelAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Cancel a queued or scheduled broadcast.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.DuplicateAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Duplicate a broadcast. Returns the new broadcast ID.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.BroadcastsResource.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Delete a broadcast.</summary>
+        </member>
+        <member name="T:CastBrick.SDK.Resources.ContactsResource">
+            <summary>Contacts and contact lists operations.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.ListAsync(System.Int32,System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>List contacts (paginated).</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.GetAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get a contact by ID.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.CreateAsync(CastBrick.SDK.Models.Contacts.CreateContactRequest,System.Threading.CancellationToken)">
+            <summary>Create contacts from comma/newline-separated emails or phone numbers.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Delete a contact.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.ListListsAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>List all contact lists.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.GetListAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get a contact list by ID.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.CreateListAsync(System.String,System.Threading.CancellationToken)">
+            <summary>Create a contact list.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.AddToListAsync(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>Add a contact to a list.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.ContactsResource.RemoveFromListAsync(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>Remove a contact from a list.</summary>
+        </member>
+        <member name="T:CastBrick.SDK.Resources.SmsResource">
+            <summary>SMS operations.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.SmsResource.SendAsync(CastBrick.SDK.Models.Sms.SendSmsRequest,System.Threading.CancellationToken)">
+            <summary>Send an SMS to one or more recipients.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.SmsResource.GetAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get a single SMS message by ID.</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.SmsResource.ListAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>List SMS messages (paginated).</summary>
+        </member>
+        <member name="M:CastBrick.SDK.Resources.SmsResource.CancelScheduledAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Cancel a scheduled SMS.</summary>
+        </member>
+    </members>
+</doc>
