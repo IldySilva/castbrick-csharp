@@ -1740,7 +1740,7 @@
     "/Users/ildebertosilva/.nuget/packages/": {}
   },
   "project": {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "restore": {
       "projectUniqueName": "/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/CastBrick.SDK.csproj",
       "projectName": "CastBrick.SDK",
