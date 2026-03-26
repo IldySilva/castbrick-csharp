@@ -14,10 +14,6 @@ public sealed class SmsResource
     public Task<SendSmsResponse> SendAsync(SendSmsRequest request, CancellationToken ct = default)
         => _client.PostAsync<SendSmsResponse>("sms/send", request, ct);
 
-    /// <summary>Get a single SMS message by ID.</summary>
-    public Task<SmsMessage> GetAsync(Guid id, CancellationToken ct = default)
-        => _client.GetAsync<SmsMessage>($"sms/{id}", ct);
-
     /// <summary>List SMS messages (paginated).</summary>
     public Task<PagedResult<SmsMessage>> ListAsync(int page = 1, int pageSize = 20, CancellationToken ct = default)
         => _client.GetAsync<PagedResult<SmsMessage>>($"sms?pageNumber={page}&pageSize={pageSize}", ct);
