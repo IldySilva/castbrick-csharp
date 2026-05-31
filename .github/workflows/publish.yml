@@ -8,6 +8,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write   # Required for NuGet trusted publishing (OIDC)
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,8 +23,7 @@ jobs:
       - name: Build & Pack
         run: dotnet pack CastBrick.SDK/CastBrick.SDK.csproj -c Release
 
-      - name: Push to NuGet
+      - name: Push to NuGet (trusted publishing)
         run: |
           dotnet nuget push CastBrick.SDK/bin/Release/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json
