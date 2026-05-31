@@ -32,19 +32,23 @@ await cb.Sms.SendAsync(new SendSmsRequest
 {
     Recipients = ["+244923000000", "+244912000000"],
     Content = "Your OTP is 1234",
-    SenderId = "MyApp",                          // optional
-    ScheduledAt = DateTime.UtcNow.AddHours(1),  // optional
+    SenderId = "MyApp",                         // optional — approved Sender ID
+    ScheduledAt = DateTime.UtcNow.AddHours(1),  // optional — schedule for later
+    Fallback = true,                            // optional — fall back to CastBrick sender
 });
 
-// Get a single message
-var msg = await cb.Sms.GetAsync(id);
-Console.WriteLine(msg.Status);
-
-// List (paginated)
-var page = await cb.Sms.ListAsync(page: 1, pageSize: 20);
+// List (with optional filters)
+var page = await cb.Sms.ListAsync(
+    page: 1,
+    pageSize: 20,
+    status: "delivered",            // pending | sent | delivered | failed | scheduled
+    phone: "+244923000000",
+    from: new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+    to: new DateTime(2026, 6, 1, 0, 0, 0, DateTimeKind.Utc)
+);
 Console.WriteLine($"{page.TotalCount} messages");
 
-// Cancel a scheduled message
+// Cancel a scheduled SMS
 await cb.Sms.CancelScheduledAsync(messageId);
 ```
 
@@ -57,7 +61,7 @@ var page = await cb.Contacts.ListAsync(search: "john");
 // Get
 var contact = await cb.Contacts.GetAsync(id);
 
-// Create (comma or newline-separated values)
+// Create — comma or newline-separated phone numbers
 await cb.Contacts.CreateAsync(new CreateContactRequest
 {
     PhoneNumbers = "+244923000000,+244912000000"
@@ -73,12 +77,12 @@ await cb.Contacts.DeleteAsync(id);
 // List all
 var lists = await cb.Contacts.ListListsAsync();
 
-// Create
-var list = await cb.Contacts.CreateListAsync("VIP Customers");
+// Create — returns the new list ID (Guid)
+var listId = await cb.Contacts.CreateListAsync("VIP Customers");
 
 // Add / remove a contact
-await cb.Contacts.AddToListAsync(list.Id, contact.Id);
-await cb.Contacts.RemoveFromListAsync(list.Id, contact.Id);
+await cb.Contacts.AddToListAsync(listId, contact.Id);
+await cb.Contacts.RemoveFromListAsync(listId, contact.Id);
 ```
 
 ## Broadcasts
@@ -126,6 +130,9 @@ try
 catch (CastBrickApiException ex)
 {
     Console.WriteLine($"{ex.StatusCode}: {ex.ResponseBody}");
+    // 401 → invalid or revoked API key
+    // 402 → insufficient credits
+    // 422 → validation error
 }
 ```
 
