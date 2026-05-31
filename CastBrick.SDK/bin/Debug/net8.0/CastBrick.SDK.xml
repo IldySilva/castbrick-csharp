@@ -67,10 +67,7 @@
             <summary>Your CastBrick API key.</summary>
         </member>
         <member name="P:CastBrick.SDK.CastBrickOptions.BaseUrl">
-            <summary>API base URL. Defaults to https://api.castbrick.com.</summary>
-        </member>
-        <member name="P:CastBrick.SDK.Models.Contacts.CreateContactRequest.Emails">
-            <summary>Comma or newline-separated email addresses.</summary>
+            <summary>API base URL. Defaults to https://api.castbrick.co.</summary>
         </member>
         <member name="P:CastBrick.SDK.Models.Contacts.CreateContactRequest.PhoneNumbers">
             <summary>Comma or newline-separated phone numbers.</summary>
@@ -95,6 +92,12 @@
         </member>
         <member name="P:CastBrick.SDK.Models.Sms.SendSmsRequest.ContactListId">
             <summary>Send to all contacts in this list instead of/in addition to Recipients.</summary>
+        </member>
+        <member name="P:CastBrick.SDK.Models.Sms.SendSmsRequest.Fallback">
+            <summary>
+            Whether to fall back to the CastBrick default sender when the chosen
+            sender ID is unavailable. Defaults to <c>true</c> on the server.
+            </summary>
         </member>
         <member name="T:CastBrick.SDK.Resources.BroadcastsResource">
             <summary>Broadcast operations.</summary>
@@ -133,7 +136,7 @@
             <summary>Get a contact by ID.</summary>
         </member>
         <member name="M:CastBrick.SDK.Resources.ContactsResource.CreateAsync(CastBrick.SDK.Models.Contacts.CreateContactRequest,System.Threading.CancellationToken)">
-            <summary>Create contacts from comma/newline-separated emails or phone numbers.</summary>
+            <summary>Create contacts from comma/newline-separated phone numbers.</summary>
         </member>
         <member name="M:CastBrick.SDK.Resources.ContactsResource.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
             <summary>Delete a contact.</summary>
@@ -145,7 +148,7 @@
             <summary>Get a contact list by ID.</summary>
         </member>
         <member name="M:CastBrick.SDK.Resources.ContactsResource.CreateListAsync(System.String,System.Threading.CancellationToken)">
-            <summary>Create a contact list.</summary>
+            <summary>Create a contact list. Returns the ID of the created list.</summary>
         </member>
         <member name="M:CastBrick.SDK.Resources.ContactsResource.AddToListAsync(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>Add a contact to a list.</summary>
@@ -159,14 +162,11 @@
         <member name="M:CastBrick.SDK.Resources.SmsResource.SendAsync(CastBrick.SDK.Models.Sms.SendSmsRequest,System.Threading.CancellationToken)">
             <summary>Send an SMS to one or more recipients.</summary>
         </member>
-        <member name="M:CastBrick.SDK.Resources.SmsResource.GetAsync(System.Guid,System.Threading.CancellationToken)">
-            <summary>Get a single SMS message by ID.</summary>
-        </member>
-        <member name="M:CastBrick.SDK.Resources.SmsResource.ListAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
-            <summary>List SMS messages (paginated).</summary>
+        <member name="M:CastBrick.SDK.Resources.SmsResource.ListAsync(System.Int32,System.Int32,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>List SMS messages with optional filters.</summary>
         </member>
         <member name="M:CastBrick.SDK.Resources.SmsResource.CancelScheduledAsync(System.Guid,System.Threading.CancellationToken)">
-            <summary>Cancel a scheduled SMS.</summary>
+            <summary>Cancel a scheduled SMS by its ID.</summary>
         </member>
     </members>
 </doc>

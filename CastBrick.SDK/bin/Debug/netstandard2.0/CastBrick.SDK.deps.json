@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "CastBrick.SDK/0.1.0": {
+      "CastBrick.SDK/0.1.2": {
         "dependencies": {
           "Microsoft.Extensions.Http": "8.0.0",
           "NETStandard.Library": "2.0.3",
@@ -267,7 +267,7 @@
     }
   },
   "libraries": {
-    "CastBrick.SDK/0.1.0": {
+    "CastBrick.SDK/0.1.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

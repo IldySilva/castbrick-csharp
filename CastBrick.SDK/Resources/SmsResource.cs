@@ -14,11 +14,25 @@ public sealed class SmsResource
     public Task<SendSmsResponse> SendAsync(SendSmsRequest request, CancellationToken ct = default)
         => _client.PostAsync<SendSmsResponse>("sms/send", request, ct);
 
-    /// <summary>List SMS messages (paginated).</summary>
-    public Task<PagedResult<SmsMessage>> ListAsync(int page = 1, int pageSize = 20, CancellationToken ct = default)
-        => _client.GetAsync<PagedResult<SmsMessage>>($"sms?pageNumber={page}&pageSize={pageSize}", ct);
+    /// <summary>List SMS messages with optional filters.</summary>
+    public Task<PagedResult<SmsMessage>> ListAsync(
+        int page = 1,
+        int pageSize = 20,
+        string? status = null,
+        string? phone = null,
+        DateTime? from = null,
+        DateTime? to = null,
+        CancellationToken ct = default)
+    {
+        var url = $"sms?pageNumber={page}&pageSize={pageSize}";
+        if (!string.IsNullOrWhiteSpace(status)) url += $"&status={Uri.EscapeDataString(status)}";
+        if (!string.IsNullOrWhiteSpace(phone))  url += $"&phone={Uri.EscapeDataString(phone)}";
+        if (from.HasValue) url += $"&from={Uri.EscapeDataString(from.Value.ToUniversalTime().ToString("O"))}";
+        if (to.HasValue)   url += $"&to={Uri.EscapeDataString(to.Value.ToUniversalTime().ToString("O"))}";
+        return _client.GetAsync<PagedResult<SmsMessage>>(url, ct);
+    }
 
-    /// <summary>Cancel a scheduled SMS.</summary>
+    /// <summary>Cancel a scheduled SMS by its ID.</summary>
     public Task CancelScheduledAsync(Guid messageId, CancellationToken ct = default)
-        => _client.PostAsync("sms/cancel-scheduled", new { messageId }, ct);
+        => _client.DeleteAsync($"sms/{messageId}", ct);
 }

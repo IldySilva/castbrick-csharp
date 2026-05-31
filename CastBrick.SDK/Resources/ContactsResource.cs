@@ -24,9 +24,9 @@ public sealed class ContactsResource
     public Task<Contact> GetAsync(Guid id, CancellationToken ct = default)
         => _client.GetAsync<Contact>($"audience/contacts/{id}", ct);
 
-    /// <summary>Create contacts from comma/newline-separated emails or phone numbers.</summary>
-    public Task<int> CreateAsync(CreateContactRequest request, CancellationToken ct = default)
-        => _client.PostAsync<int>("audience/contacts", request, ct);
+    /// <summary>Create contacts from comma/newline-separated phone numbers.</summary>
+    public Task CreateAsync(CreateContactRequest request, CancellationToken ct = default)
+        => _client.PostAsync("audience/contacts", request, ct);
 
     /// <summary>Delete a contact.</summary>
     public Task DeleteAsync(Guid id, CancellationToken ct = default)
@@ -42,9 +42,9 @@ public sealed class ContactsResource
     public Task<ContactList> GetListAsync(Guid id, CancellationToken ct = default)
         => _client.GetAsync<ContactList>($"audience/lists/{id}", ct);
 
-    /// <summary>Create a contact list.</summary>
-    public Task<ContactList> CreateListAsync(string name, CancellationToken ct = default)
-        => _client.PostAsync<ContactList>("audience/lists", new { name }, ct);
+    /// <summary>Create a contact list. Returns the ID of the created list.</summary>
+    public Task<Guid> CreateListAsync(string name, CancellationToken ct = default)
+        => _client.PostAsync<Guid>("audience/lists", new { name }, ct);
 
     /// <summary>Add a contact to a list.</summary>
     public Task AddToListAsync(Guid listId, Guid contactId, CancellationToken ct = default)

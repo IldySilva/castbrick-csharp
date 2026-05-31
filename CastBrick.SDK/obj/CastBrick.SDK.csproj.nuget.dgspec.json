@@ -5,7 +5,7 @@
   },
   "projects": {
     "/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/CastBrick.SDK.csproj": {
-      "version": "0.1.1",
+      "version": "0.1.2",
       "restore": {
         "projectUniqueName": "/Users/ildebertosilva/CastBrick/castbrick-csharp/CastBrick.SDK/CastBrick.SDK.csproj",
         "projectName": "CastBrick.SDK",

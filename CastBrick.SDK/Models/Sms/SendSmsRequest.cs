@@ -17,4 +17,10 @@ public sealed class SendSmsRequest
 
     /// <summary>Send to all contacts in this list instead of/in addition to Recipients.</summary>
     public Guid? ContactListId { get; set; }
+
+    /// <summary>
+    /// Whether to fall back to the CastBrick default sender when the chosen
+    /// sender ID is unavailable. Defaults to <c>true</c> on the server.
+    /// </summary>
+    public bool? Fallback { get; set; }
 }
